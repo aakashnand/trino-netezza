@@ -2,8 +2,8 @@
 
 ## Prerequisite
 - Latest Netezza JDBC jar
-- Java 11
-- maven 3.6.3 or 3.6.3+
+- Java 11 Installation -> `sudo apt-get install openjdk-11-jdk`
+- maven 3.6.3 or 3.6.3+ -> https://linuxize.com/post/how-to-install-apache-maven-on-ubuntu-18-04/ http://maven.apache.org/download.cgi
 
 ## Usage
 ### Copy nzjdbc.jar to resources
