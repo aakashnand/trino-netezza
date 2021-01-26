@@ -1,16 +1,14 @@
 # Trino Netezza Connector
 
 ## Prerequisite
-- Latest Netezza JDBC jar
 - Java 11 Installation -> `sudo apt-get install openjdk-11-jdk`
-- maven 3.6.3 or 3.6.3+ -> https://linuxize.com/post/how-to-install-apache-maven-on-ubuntu-18-04/ http://maven.apache.org/download.cgi
 
 ## Usage
 
 ### Build connector
 ```
 $ cd trino-netezza
-$ mvn clean install
+$ ./mvnw clean install
 ```
 This will create taregt folder in the current directory. It should create folder `trino-netezza-351`
 ```
