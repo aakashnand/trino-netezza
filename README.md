@@ -1,16 +1,22 @@
 # Trino Netezza Connector
 
-## Prerequisite
-- Java 11 Installation -> `sudo apt-get install openjdk-11-jdk`
-
+## Prerequisite to build
+- Java 11
+- Netezza JDBC jar 
+  - Ref: https://www.ibm.com/support/knowledgecenter/SSULQD_7.2.1/com.ibm.nz.datacon.doc/c_datacon_jdbc_driver_installation_unix_linux_sup.html
+  - Download nzjdbc-3.jar and place it under the directory `resources/repo/org/netezza/nzjdbc/3/`
+  
 ## Usage
 
 ### Build connector
+
 ```
 $ cd trino-netezza
 $ ./mvnw clean install
 ```
+
 This will create taregt folder in the current directory. It should create folder `trino-netezza-351`
+
 ```
 $ cd target/trino-netezza-351/
 $ $ ls target/trino-netezza-351/
@@ -32,18 +38,21 @@ $ mv trino-netezza-351 netezza
 ```
 
 - Copy target/netezza to trino installation directory 
-Example:
 
+Example:
 ```
 scp -r target/netezza user@trino-server:/usr/lib/trino/plugins
 ```
 
 ### Create catalog config
 - Create catalog file under presto installation directory /etc
+
 ```
 $vi /usr/lib/trino/etc/catalog/netezza.properties
 ```
+
 Configure following properties to `netezza.proprties`
+
 ```
 connector.name=netezza
 connection-url=jdbc:netezza://X.X.X.X:5480/db_name
@@ -52,6 +61,7 @@ connection-password=password
 ```
 
 - Restart the presto server
+
 ```
 $/usr/lib/trino/bin/launcher restart
 ```
@@ -68,8 +78,10 @@ trino:default> show catalogs;
 
 ```
 
+## Limitations
+- Currently this connector does not support `DELETE` and `UPDATE` queries.
 
-
-
+## Contribution
+Please read [CONTRUBUTIONS.md](CONTRIBUTING.md) and feel free to send PR or create issue to improve this connector. 
 
 
