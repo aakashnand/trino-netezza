@@ -21,6 +21,7 @@ import io.trino.plugin.jdbc.JdbcColumnHandle;
 import io.trino.plugin.jdbc.JdbcTableHandle;
 import io.trino.plugin.jdbc.JdbcTypeHandle;
 import io.trino.plugin.jdbc.WriteMapping;
+import io.trino.plugin.jdbc.mapping.IdentifierMapping;
 import io.trino.spi.TrinoException;
 import io.trino.spi.connector.ConnectorSession;
 import io.trino.spi.connector.SchemaTableName;
@@ -41,9 +42,9 @@ public class NetezzaClient
         extends BaseJdbcClient
 {
     @Inject
-    public NetezzaClient(BaseJdbcConfig config, ConnectionFactory connectionFactory)
+    public NetezzaClient(BaseJdbcConfig config, ConnectionFactory connectionFactory, IdentifierMapping identifierMapping)
     {
-        super(config, "\"", connectionFactory);
+        super(config, "\"", connectionFactory, identifierMapping);
     }
 
     @Override
@@ -61,10 +62,10 @@ public class NetezzaClient
     }
 
     @Override
-    public Optional<ColumnMapping> toTrinoType(ConnectorSession session, Connection connection, JdbcTypeHandle typeHandle)
+    public Optional<ColumnMapping> toColumnMapping(ConnectorSession session, Connection connection, JdbcTypeHandle typeHandle)
     {
         // TODO implement proper type mapping
-        return legacyToPrestoType(session, connection, typeHandle);
+        return legacyColumnMapping(session, connection, typeHandle);
     }
 
     @Override

@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.trino</groupId>
         <artifactId>trino-root</artifactId>
-        <version>351</version>
+        <version>359</version>
     </parent>
 
     <artifactId>trino-netezza</artifactId>
